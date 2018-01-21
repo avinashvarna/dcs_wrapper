@@ -91,6 +91,11 @@ ENV/
 .spyderproject
 .spyproject
 
+# Eclipse project settings
+.project
+.settings/
+.pydevproject
+
 # Rope project settings
 .ropeproject
 
