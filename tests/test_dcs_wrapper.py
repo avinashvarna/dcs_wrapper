@@ -4,6 +4,7 @@ Simple test for dcs wrapper
 
 @author: avinashvarna
 """
+from __future__ import unicode_literals
 import pytest
 from indic_transliteration import sanscript
 from dcs_wrapper import DCS, Book, Chapter, Sentence, DCSTagMapper
