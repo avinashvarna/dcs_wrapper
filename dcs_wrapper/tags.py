@@ -5,9 +5,9 @@ Map DCS tags to a common interface
 @author: alvarna
 """
 
-from __future__ import print_function
-# import codecs
+from __future__ import print_function, unicode_literals
 import logging
+import six
 try:
     from functools import lru_cache
 except ImportError:
@@ -104,7 +104,7 @@ class DCSTagMapper(object):
         # Remove the extra annotation for ShaShTI
         tag = tag.replace("/o.", "")
         tags = set()
-        dcs_tags = list(map(str.strip, tag.split(".")))
+        dcs_tags = list(map(six.text_type.strip, tag.split(".")))
         vibhakti = dcs_tags.pop(0)
         if vibhakti in vibhakti_map:
             tags.add(vibhakti_map[vibhakti])
@@ -129,7 +129,7 @@ class DCSTagMapper(object):
     def _map_verb(tag):
         '''Map tags for verb forms'''
         tags = set()
-        dcs_tags = list(map(str.strip, tag.split(".")))
+        dcs_tags = list(map(six.text_type.strip, tag.split(".")))
         purusha = dcs_tags.pop(0)
         if purusha in purusha_map:
             tags.add(purusha_map[purusha])
@@ -163,7 +163,7 @@ class DCSTagMapper(object):
         ''' Map tags to a human readable format
 
         :param tag: Tag from DCS database
-        :type tag: str
+        :type tag: str, unicode
         :return: Set of human readable tags in devanagari
         :rtype: set
         '''

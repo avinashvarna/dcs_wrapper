@@ -7,6 +7,7 @@ Base classes and utilities
 
 from __future__ import print_function
 from collections import namedtuple
+import six
 
 try:
     import ujson as json
@@ -17,36 +18,40 @@ except ImportError:
 Book = namedtuple("Book", ["dcsId", "title", "chapterIds"])
 ''' Represents a book in the DCS database
 '''
-Book.dcsId.__doc__ = '''ID of the book in DCS'''
-Book.title.__doc__ = '''Title of the book'''
-Book.chapterIds.__doc__ = '''List of IDs of chapters in the book'''
+if not six.PY2:
+    Book.dcsId.__doc__ = '''ID of the book in DCS'''
+    Book.title.__doc__ = '''Title of the book'''
+    Book.chapterIds.__doc__ = '''List of IDs of chapters in the book'''
 
 
 Chapter = namedtuple("Chapter", ["dcsId", "dcsName", "sentenceIds"])
 ''' Represents a chapter in the DCS database
 '''
-Chapter.dcsId.__doc__ = '''ID of the chapter in DCS'''
-Chapter.dcsName.__doc__ = '''Name of the chapter in DCS'''
-Chapter.sentenceIds.__doc__ = '''List of IDs of sentences in the book'''
+if not six.PY2:
+    Chapter.dcsId.__doc__ = '''ID of the chapter in DCS'''
+    Chapter.dcsName.__doc__ = '''Name of the chapter in DCS'''
+    Chapter.sentenceIds.__doc__ = '''List of IDs of sentences in the book'''
 
 Sentence = namedtuple("Sentence",
                       ['dcsId', 'text', 'dcsAnalysisDecomposition'])
 ''' Represents a Sentence in the DCS database
 '''
-Sentence.dcsId.__doc__ = '''ID of the sentence in DCS'''
-Sentence.text.__doc__ = '''IAST encoded unicode string of the actual text'''
-Sentence.dcsAnalysisDecomposition.__doc__ = \
-    '''Grammatical analysis of each word represented as
-    list(list(:class:`~dcswrapper.WordAnalysis`))
-    '''
+if not six.PY2:
+    Sentence.dcsId.__doc__ = '''ID of the sentence in DCS'''
+    Sentence.text.__doc__ = '''IAST encoded unicode string of the actual text'''
+    Sentence.dcsAnalysisDecomposition.__doc__ = \
+        '''Grammatical analysis of each word represented as
+        list(list(:class:`~dcswrapper.WordAnalysis`))
+        '''
 
 WordAnalysis = namedtuple("WordAnalysis",
                           ['dcsId', 'root', 'dcsGrammarHint'])
 ''' Represents the analysis of a word in the DCS database
 '''
-WordAnalysis.dcsId.__doc__ = '''ID of the lemma in DCS'''
-WordAnalysis.root.__doc__ = '''IAST encoded unicode lemma/root of the word'''
-WordAnalysis.dcsGrammarHint.__doc__ = '''Grammatical analysis of each word'''
+if not six.PY2:
+    WordAnalysis.dcsId.__doc__ = '''ID of the lemma in DCS'''
+    WordAnalysis.root.__doc__ = '''IAST encoded unicode lemma/root of the word'''
+    WordAnalysis.dcsGrammarHint.__doc__ = '''Grammatical analysis of each word'''
 
 
 def from_json(s):
