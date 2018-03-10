@@ -158,6 +158,20 @@ class DCSTagMapper(object):
         return tags
 
     @staticmethod
+    def is_nominal(tag):
+        first = tag.split(".")[0]
+        if first in vibhakti_map:
+            return True
+        return False
+
+    @staticmethod
+    def is_verbal(tag):
+        first = tag.split(".")[0]
+        if first in purusha_map:
+            return True
+        return False
+
+    @staticmethod
     @lru_cache(200)
     def map_tag(tag):
         ''' Map tags to a human readable format
